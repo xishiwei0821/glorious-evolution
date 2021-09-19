@@ -15,11 +15,6 @@ class IndexController extends Controller
         $this->request = $request;
     }
 
-    public function test()
-    {
-        return 'test';
-    }
-
     public function wx_access()
     {
         $signature = $this->request->get('signature');
@@ -29,7 +24,7 @@ class IndexController extends Controller
         $token     = $this->token;
 
         if (empty($signature) || empty($timestamp) || empty($nonce) || empty($echostr) || empty($token)) {
-            return "Error: 获取参数错误";
+            return false;
         }
 
         $array = [
@@ -41,9 +36,9 @@ class IndexController extends Controller
         $hashcode = sha1(implode('', $array));
 
         if ($hashcode !== $signature) {
-            return "Error: 签名错误";
+            return false;
         }
 
-        return $echostr;
+        return true;
     }
 }
