@@ -23,21 +23,21 @@ class IndexController extends Controller
         $echostr   = $this->request->get('echostr');
         $token     = $this->token;
 
-        // if (empty($signature) || empty($timestamp) || empty($nonce) || empty($echostr) || empty($token)) {
-        //     return false;
-        // }
+        if (empty($signature) || empty($timestamp) || empty($nonce) || empty($echostr) || empty($token)) {
+            return false;
+        }
 
-        // $array = [
-        //     $token, $timestamp, $nonce
-        // ];
+        $array = [
+            $token, $timestamp, $nonce
+        ];
 
-        // sort($array, 'SORT_STRING');
+        sort($array, 'SORT_STRING');
 
-        // $hashcode = sha1(implode('', $array));
+        $hashcode = sha1(implode('', $array));
 
-        // if ($hashcode !== $signature) {
-        //     return false;
-        // }
+        if ($hashcode !== $signature) {
+            return false;
+        }
 
         return $echostr;
     }
