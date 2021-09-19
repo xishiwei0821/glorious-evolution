@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Exceptions\CustomException;
+use Illuminate\Support\Facades\Cache;
 
 class WxAccess
 {
@@ -81,7 +82,7 @@ class WxAccess
      */
     private static function getAccessToken()
     {
-        $cacheInfo = cache('access_token');
+        $cacheInfo = Cache::get('access_token');
         if (empty($cacheInfo) || $cacheInfo['created_at'] + $cacheInfo['expires_in'] < time()) {
             $request_url = "https://api.weixin.qq.com/cgi-bin/token";
 
@@ -103,7 +104,7 @@ class WxAccess
 
             $result['created_at'] = time();
 
-            cache('access_token', $result);
+            Cache::set('access_token', $result);
         } else {
             $result = $cacheInfo;
         }

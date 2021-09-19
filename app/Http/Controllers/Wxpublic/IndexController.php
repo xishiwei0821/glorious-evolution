@@ -62,14 +62,7 @@ class IndexController extends Controller
         ];
 
         $menus = json_encode($menus);
-
-        print_r(cache('access_token'));
-        die;
-
         $access_token = WxAccess::getAccessToken();
-
-        print_r($access_token);
-        die;
         $request_url = 'https://api.weixin.qq.com/cgi-bin/menu/create?access_token=' + $access_token;
 
         $data = request_curl($request_url, 'post', $menus, [], true);
