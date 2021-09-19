@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::prefix('wx_public')->group(function () {
+    Route::get('/wx_access', [ App\Http\Controllers\Wxpublic\IndexController::class, 'wx_access' ]);
+});
