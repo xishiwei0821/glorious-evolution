@@ -39,6 +39,6 @@ class IndexController extends Controller
             return "Error: 签名错误";
         }
 
-        return $echostr;
+        return true;
     }
 }
