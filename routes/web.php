@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/test', [ App\Http\Controllers\Wxpublic\IndexController::class, 'test' ]);
+
 Route::prefix('wx_public')->group(function () {
     Route::get('/wx_access', [ App\Http\Controllers\Wxpublic\IndexController::class, 'wx_access' ]);
 });

@@ -15,6 +15,11 @@ class IndexController extends Controller
         $this->request = $request;
     }
 
+    public function test()
+    {
+        return 'test';
+    }
+
     public function wx_access()
     {
         $signature = $this->request->get('signature');
@@ -39,6 +44,6 @@ class IndexController extends Controller
             return "Error: 签名错误";
         }
 
-        return true;
+        return $echostr;
     }
 }
