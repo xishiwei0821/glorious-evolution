@@ -97,7 +97,7 @@ class WxAccess
                 true
             );
 
-            if ($result['errcode'] !== 0) {
+            if (array_key_exists('errorcode', $result) && $result['errcode'] !== 0) {
                 throw new CustomException($result['errmsg']);
             }
 
