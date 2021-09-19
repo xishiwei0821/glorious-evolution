@@ -97,6 +97,10 @@ class WxAccess
                 true
             );
 
+            if ($result['errcode'] !== 0) {
+                throw new CustomException($result['errmsg']);
+            }
+
             $result['created_at'] = time();
 
             cache('access_token', $result);
