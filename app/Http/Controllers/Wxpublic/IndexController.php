@@ -62,6 +62,10 @@ class IndexController extends Controller
         ];
 
         $menus = json_encode($menus);
+
+        print_r(cache('access_token'));
+        die;
+
         $access_token = WxAccess::getAccessToken();
 
         print_r($access_token);
