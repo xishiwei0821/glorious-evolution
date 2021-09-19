@@ -6,37 +6,65 @@ use App\Exceptions\CustomException;
 
 class WxAccess
 {
-    private static $appid;
-    private static $secret;
-    private static $templateList;
+    private static $public_appid;
+    private static $public_secret;
+    private static $mini_appid;
+    private static $mini_secret;
+    private static $open_appid;
+    private static $open_secret;
 
     public static function __callStatic($name, $arguments)
     {
-        if (in_array($name, ['getOpenId', 'sendMessage', 'getAccessToken'])) {
+        if (!in_array($name, ['getOpenId', 'sendMessage', 'getAccessToken'])) {
             throw new CustomException('Method ' . $name . 'does not allow access !');
         }
 
-        self::$appid        = config('wx.appid');
-        self::$secret       = config('wx.secret');
-        self::$templateList = config('wx.templateList');
+        self::$public_appid        = config('wx.public_appid');
+        self::$public_secret       = config('wx.public_secret');
+
+        self::$mini_appid        = config('wx.mini_appid');
+        self::$mini_secret       = config('wx.mini_secret');
+
+        self::$open_appid        = config('wx.open_appid');
+        self::$open_secret       = config('wx.open_secret');
         return self::$name(...$arguments);
     }
 
     /**
      *  获取用户openid
      *  @param string $js_code
+     *  @param string $type  ['PUBLIC' => '公众号', 'MINI' => '小程序', 'OPEN' => '开放平台']
      *  @return array
      */
-    private static function getOpenId($js_code)
+    private static function getOpenId($js_code, $type = 'PUBLIC')
     {
+        switch ($type) {
+            case 'PUBLIC':
+                $appid = self::$public_appid;
+                $secret = self::$public_secret;
+            break;
+            case 'PUBLIC':
+                $appid = self::$mini_appid;
+                $secret = self::$mini_secret;
+            break;
+            case 'PUBLIC':
+                $appid = self::$open_appid;
+                $secret = self::$open_secret;
+            break;
+            default:
+                $appid = self::$public_appid;
+                $secret = self::$public_secret;
+            break;
+        }
+
         $request_url = "https://api.weixin.qq.com/sns/jscode2session";
 
         $result = request_curl(
             $request_url,
             'get',
             [
-                'appid'      => self::$appid,
-                'secret'     => self::$secret,
+                'appid'      => $appid,
+                'secret'     => $secret,
                 'js_code'    => $js_code,
                 'grant_type' => 'authorization_code'
             ],
@@ -62,8 +90,8 @@ class WxAccess
                 'get',
                 [
                     'grant_type' => 'client_credential',
-                    'appid'      => self::$appid,
-                    'secret'     => self::$secret
+                    'appid'      => self::$public_appid,
+                    'secret'     => self::$public_secret
                 ],
                 [],
                 true
@@ -107,7 +135,7 @@ class WxAccess
             return '';
         }
 
-        if ($dataObj->watermark->appid != self::$appid) {
+        if ($dataObj->watermark->appid != self::$public_appid) {
             return '';
         }
 
@@ -116,36 +144,36 @@ class WxAccess
         return json_decode($data, true);
     }
 
-    /**
-     *  发送订阅消息
-     *  @param string $user_open_id 用户openid
-     *  @param integer $message_type 发送类型
-     *  @param object $data 参数
-     *  @param string $page 跳转页面
-     *  @return object
-     */
-    private static function sendMessage($user_open_id, $message_type, $data = [], $page = '')
-    {
-        // 通过接口获取access_token
-        $access_token = self::getAccessToken();
+    // /**
+    //  *  发送订阅消息
+    //  *  @param string $user_open_id 用户openid
+    //  *  @param integer $message_type 发送类型
+    //  *  @param object $data 参数
+    //  *  @param string $page 跳转页面
+    //  *  @return object
+    //  */
+    // private static function sendMessage($user_open_id, $message_type, $data = [], $page = '')
+    // {
+    //     // 通过接口获取access_token
+    //     $access_token = self::getAccessToken();
 
-        $url = 'https://api.weixin.qq.com/cgi-bin/message/subscribe/send?access_token=' . $access_token;
+    //     $url = 'https://api.weixin.qq.com/cgi-bin/message/subscribe/send?access_token=' . $access_token;
 
-        $result = request_curl(
-            $url,
-            'post',
-            json_encode([
-                'access_token' => $access_token,
-                'touser'       => $user_open_id,
-                'template_id'  => self::$templateList[$message_type]['id'],
-                'page'         => $page,
-                'data'         => $data,
-                // 'miniprogram_state' => 'trial'
-            ]),
-            [],
-            true
-        );
+    //     $result = request_curl(
+    //         $url,
+    //         'post',
+    //         json_encode([
+    //             'access_token' => $access_token,
+    //             'touser'       => $user_open_id,
+    //             'template_id'  => self::$templateList[$message_type]['id'],
+    //             'page'         => $page,
+    //             'data'         => $data,
+    //             // 'miniprogram_state' => 'trial'
+    //         ]),
+    //         [],
+    //         true
+    //     );
 
-        return $result;
-    }
+    //     return $result;
+    // }
 }

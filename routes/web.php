@@ -19,4 +19,5 @@ Route::get('/', function () {
 
 Route::prefix('wx_public')->group(function () {
     Route::get('/wx_access', [ App\Http\Controllers\Wxpublic\IndexController::class, 'wx_access' ]);
+    Route::get('/menus', [ App\Http\Controllers\Wxpublic\IndexController::class, 'menus' ]);
 });

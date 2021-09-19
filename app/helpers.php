@@ -120,10 +120,11 @@ if (!function_exists('request_curl')) {
 
         // 执行结果
         $response = curl_exec($curl);
+        $errors   = curl_error($curl);
         curl_close($curl);
 
         // 显示错误信息
-        if (curl_error($curl)) {
+        if ($errors) {
             return false;
         }
 
