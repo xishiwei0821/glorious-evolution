@@ -31,7 +31,7 @@ class IndexController extends Controller
             $token, $timestamp, $nonce
         ];
 
-        sort($array);
+        sort($array, 'SORT_STRING');
 
         $hashcode = sha1(implode('', $array));
 
