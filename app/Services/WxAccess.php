@@ -4,9 +4,11 @@ namespace App\Services;
 
 use App\Exceptions\CustomException;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Http\Request;
 
 class WxAccess
 {
+    private static $token = '9efc667952e2738cdcc780b1eafead01';
     private static $public_appid;
     private static $public_secret;
     private static $mini_appid;
@@ -29,6 +31,34 @@ class WxAccess
         self::$open_appid        = config('wx.open_appid');
         self::$open_secret       = config('wx.open_secret');
         return self::$name(...$arguments);
+    }
+
+    private static function verifyCode()
+    {
+        $request = new Request();
+        $signature = $request->get('signature');
+        $timestamp = $request->get('timestamp');
+        $nonce     = $request->get('nonce');
+        $echostr   = $request->get('echostr');
+        $token     = self::$token;
+
+        if (empty($signature) || empty($timestamp) || empty($nonce) || empty($echostr) || empty($token)) {
+            return false;
+        }
+
+        $array = [
+            $token, $timestamp, $nonce
+        ];
+
+        sort($array, SORT_STRING);
+
+        $hashcode = sha1(implode('', $array));
+
+        if ($hashcode !== $signature) {
+            return false;
+        }
+
+        return $echostr;
     }
 
     /**
