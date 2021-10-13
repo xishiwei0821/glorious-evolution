@@ -53,10 +53,10 @@
 	<nav class="menu">
 	  <div class="menu-list">
 		<a data-scroll="" href="#home" class="active">
-		  <span>首页</span>
+		  <span>欢迎你</span>
 		</a>
 		<a data-scroll="" href="#about">
-		  <span>关于我</span>
+		  <span>这是我</span>
 		</a>
 		<!-- <a data-scroll="" href="#work">
 		  <span>工作</span>
@@ -68,19 +68,19 @@
 		  <span>就业</span>
 		</a> -->
 		<a data-scroll="" href="#skill">
-		  <span>技能</span>
+		  <span>会干啥</span>
 		</a>
 		<!-- <a data-scroll="" href="#education">
 		  <span>教育</span>
 		</a> -->
 		<a data-scroll="" href="#testimonial">
-		  <span>感言</span>
+		  <span>毒鸡汤</span>
 		</a>
 		<!-- <a data-scroll="" href="#blog">
 		  <span>文章</span>
 		</a> -->
 		<a data-scroll="" href="#contact">
-		  <span>联系我</span>
+		  <span>私信我</span>
 		</a>
 	  </div>
 	</nav>
@@ -279,30 +279,30 @@
 			  <div class="list-testimonial">
 				<div class="content-testimonial">
 				  <h3 class="testi">
-					“ Reza did a phenominal job setting up my a website for my product He performed the task very quickly and efficiently. We know we have the superior topical pain relief cream on the market and he has helped us communicate that message via the website he built from scratch. Thanks! ”
+                    幸福，时时刻刻围绕在你身旁。如果你从母亲手中接过饭碗，心存温馨，那就是幸福；如果你在灯下读着朋友的来信，品味友情，那就是幸福；如果你独坐一隅，静静听歌，凝神遐思，那就是幸福。
 				  </h3>
 				  <p class="people">
-					Darin Cohen - Active10
+
 				  </p>
 				</div>
 			  </div>
 			  <div class="list-testimonial">
 				<div class="content-testimonial">
 				  <h3 class="testi">
-					“ Another successful project working with Reza. He has great design skills, is very responsive and professional. Looking forward to the next opportunity to work together. ”
+                    人就是不能闲的，不然努力一下都以为自己在拼命。
 				  </h3>
 				  <p class="people">
-					Marko Milicevic
+
 				  </p>
 				</div>
 			  </div>
 			  <div class="list-testimonial">
 				<div class="content-testimonial">
 				  <h3 class="testi">
-					“ Great designer! I like his sense of design, especially the color scheme. Quick turnaround. Look forward to work with him again. Thanks!! ”
+                    曾经拥有的，不要忘记；已经得到的，更要珍惜；属于自己的，不要放弃；已经失去的，留着回忆；想要得到的，必须努力；但最重要的，是好好爱惜自己！
 				  </h3>
 				  <p class="people">
-					JK Thang
+
 				  </p>
 				</div>
 			  </div>
