@@ -8,28 +8,45 @@ use Illuminate\Http\Request;
 
 class WxAccess
 {
+    private static $type  = 'MINI';
     private static $token = '9efc667952e2738cdcc780b1eafead01';
-    private static $public_appid;
-    private static $public_secret;
-    private static $mini_appid;
-    private static $mini_secret;
-    private static $open_appid;
-    private static $open_secret;
+    private static $appid;
+    private static $secret;
 
+    /**
+     *  如果要选择类型，可传入type参数，参数介绍如下，默认公众号
+     *  @param string $type ['PUBLIC' => '公众号', 'MINI' => '小程序', 'OPEN' => '开放平台']
+     */
     public static function __callStatic($name, $arguments)
     {
-        if (!in_array($name, ['getOpenId', 'sendMessage', 'getAccessToken'])) {
+        if (array_key_exists('type', $arguments)) {
+            self::$type = $arguments['type'];
+            unset($arguments['type']);
+        }
+
+        switch (strtoupper(self::$type)) {
+            case 'PUBLIC':
+                self::$appid  = config('wx.public_appid');
+                self::$secret = config('wx.public_secret');
+            break;
+            case 'MINI':
+                self::$appid  = config('wx.mini_appid');
+                self::$secret = config('wx.mini_secret');
+            break;
+            case 'OPEN':
+                self::$appid  = config('wx.open_appid');
+                self::$secret = config('wx.open_secret');
+            break;
+            default:
+                self::$appid  = config('wx.public_appid');
+                self::$secret = config('wx.public_secret');
+            break;
+        }
+
+        if (!in_array($name, ['getOpenId', 'sendMessage', 'getAccessToken', 'verifyCode'])) {
             throw new CustomException('Method ' . $name . 'does not allow access !');
         }
 
-        self::$public_appid        = config('wx.public_appid');
-        self::$public_secret       = config('wx.public_secret');
-
-        self::$mini_appid        = config('wx.mini_appid');
-        self::$mini_secret       = config('wx.mini_secret');
-
-        self::$open_appid        = config('wx.open_appid');
-        self::$open_secret       = config('wx.open_secret');
         return self::$name(...$arguments);
     }
 
@@ -64,38 +81,18 @@ class WxAccess
     /**
      *  获取用户openid
      *  @param string $js_code
-     *  @param string $type  ['PUBLIC' => '公众号', 'MINI' => '小程序', 'OPEN' => '开放平台']
      *  @return array
      */
-    private static function getOpenId($js_code, $type = 'PUBLIC')
+    private static function getOpenId($js_code)
     {
-        switch ($type) {
-            case 'PUBLIC':
-                $appid = self::$public_appid;
-                $secret = self::$public_secret;
-            break;
-            case 'PUBLIC':
-                $appid = self::$mini_appid;
-                $secret = self::$mini_secret;
-            break;
-            case 'PUBLIC':
-                $appid = self::$open_appid;
-                $secret = self::$open_secret;
-            break;
-            default:
-                $appid = self::$public_appid;
-                $secret = self::$public_secret;
-            break;
-        }
-
         $request_url = "https://api.weixin.qq.com/sns/jscode2session";
 
         $result = request_curl(
             $request_url,
             'get',
             [
-                'appid'      => $appid,
-                'secret'     => $secret,
+                'appid'      => self::$appid,
+                'secret'     => self::$secret,
                 'js_code'    => $js_code,
                 'grant_type' => 'authorization_code'
             ],
@@ -121,8 +118,8 @@ class WxAccess
                 'get',
                 [
                     'grant_type' => 'client_credential',
-                    'appid'      => self::$public_appid,
-                    'secret'     => self::$public_secret
+                    'appid'      => self::$appid,
+                    'secret'     => self::$secret
                 ],
                 [],
                 true
@@ -170,7 +167,7 @@ class WxAccess
             return '';
         }
 
-        if ($dataObj->watermark->appid != self::$public_appid) {
+        if ($dataObj->watermark->appid != self::$appid) {
             return '';
         }
 

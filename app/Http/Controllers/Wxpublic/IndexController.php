@@ -19,36 +19,11 @@ class IndexController extends Controller
     {
         $result = WxAccess::verifyCode();
         if (!$result) {
-            return false;
+            var_dump(false);
         }
 
-        return '';
-    }
+        $postXml = $this->request->all();
 
-    public function menus()
-    {
-        $menus = [
-            'button' => [
-                [
-                    'name' => '扫码',
-                    'sub_button' => [
-                        [
-                            'type' => 'scancode_waitmsg',
-                            'name' => '扫码带提示',
-                            'key'  => 'rselfmenu_0_0',
-                            'sub_button' => []
-                        ]
-                    ]
-                ]
-            ]
-        ];
-
-        $menus = json_encode($menus);
-        $access_token = WxAccess::getAccessToken();
-        $request_url = 'https://api.weixin.qq.com/cgi-bin/menu/create?access_token=' . $access_token;
-
-        $data = request_curl($request_url, 'post', $menus, [], true);
-
-        print_r($data);
+        return $result;
     }
 }

@@ -211,4 +211,65 @@ if (!function_exists('get_countdown_time')) {
 
         return $result;
     }
+
+    if (!function_exists('success_json')) {
+        function success_json($data = [], $msg = 'success', $code = 100000)
+        {
+            $result = [
+                'code' => $code,
+                'msg'  => $msg,
+                'data' => $data
+            ];
+
+            return response()->json($result);
+        }
+    }
+
+    if (!function_exists('error_json')) {
+        function error_json($code, $msg = 'error', $data = [])
+        {
+            $result = [
+                'code' => $code,
+                'msg'  => $msg,
+                'data' => $data
+            ];
+
+            return response()->json($result);
+        }
+    }
+
+    if (!function_exists('diff_version')) {
+        function diff_version($version, $lasted_version, $prefix = '', $time = 0)
+        {
+            $version            = substr($version, strlen($prefix));
+            $lasted_version     = substr($lasted_version, strlen($prefix));
+
+            $version_arr        = explode('.', $version);
+            $lasted_version_arr = explode('.', $lasted_version);
+
+            if (!array_key_exists($time, $lasted_version_arr)) {
+                return 1;
+            }
+
+            if (!array_key_exists($time, $version_arr)) {
+                $version_arr[$time] = 0;
+            }
+
+            $version_time        = $version_arr[$time];
+            $lasted_version_time = $lasted_version_arr[$time];
+
+            if ((int)$version_time === (int)$lasted_version_time) {
+                $time ++;
+                return diff_version($version, $lasted_version, '', $time);
+            }
+
+            if ((int)$version_time > (int)$lasted_version_time) {
+                return 1;
+            }
+
+            if ((int)$version_time < (int)$lasted_version_time) {
+                return -1;
+            }
+        }
+    }
 }

@@ -14,10 +14,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect(route('web.index'));
+});
+
+Route::prefix('web')->group(function () {
+    Route::get('/index', [ App\Http\Controllers\Web\IndexController::class, 'index' ])->name('web.index');
+    // Route::get('/test', [ App\Http\Controllers\Web\TestController::class, 'index' ]);
 });
 
 Route::prefix('wxPublic')->group(function () {
     Route::get('/wxAccess', [ App\Http\Controllers\Wxpublic\IndexController::class, 'wx_access' ]);
-    Route::get('/menus', [ App\Http\Controllers\Wxpublic\IndexController::class, 'menus' ]);
 });
