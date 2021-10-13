@@ -45,7 +45,7 @@
   <div class="for-sticky">
 	<!--LOGO-->
 	<div class="col-md-2 col-xs-6 logo">
-	  <a href="index.html"><img alt="logo" class="logo-nav" src="{{ asset('assets/images/logo.png') }}"></a>
+	  <a href="/"><img alt="logo" class="logo-nav" src="{{ asset('assets/images/logo.png') }}"></a>
 	</div>
 	<!--/.LOGO END-->
   </div>
@@ -130,7 +130,7 @@
 			  <div class="wrap-about">
 				<div class="w-content">
 				  <p class="head-about">
-					我的名字是郗世伟，平时微信或者其他社交平台或者游戏命名一般都是小菜鸡，因为了解的东西越多，越感觉到自己很菜，以后还有很长的路要走，努力学习！
+					我的名字是郗世伟，18年入坑php，如今一直在做php开发，对前端也有一定的兴趣，自己平时也会琢磨一些前端知识，随着了解的东西越来越多，也会越来越感觉自己还有好长的路要走。既然当时是自己选择的这个行业，今后也要当做兴趣来做!
 				  </p>
 
 				  <h5 class="name">
@@ -149,7 +149,7 @@
 					  <tr>
 						<td class="title">姓名 </td>
 						<td class="break">:</td>
-						<td>郗世伟（小菜鸡）</td>
+						<td>郗世伟</td>
 					  </tr>
 					  <tr>
 						<td class="title">手机号 </td>
