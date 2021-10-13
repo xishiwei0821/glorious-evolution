@@ -25,6 +25,10 @@
     <!--[if lt IE 9]>
     <script type="text/javascript" src="js/html5shiv.min.js"></script>
     <![endif]-->
+
+    <!-- google adsense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4189268772215274" crossorigin="anonymous"></script>
+    <!-- end google adsense -->
 </head>
 <body>
 
