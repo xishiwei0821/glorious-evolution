@@ -17,13 +17,6 @@ class IndexController extends Controller
 
     public function wx_access()
     {
-        $result = WxAccess::verifyCode();
-        if (!$result) {
-            var_dump(false);
-        }
-
-        $postXml = $this->request->all();
-
-        return $result;
+        return WxAccess::verifyCode();
     }
 }

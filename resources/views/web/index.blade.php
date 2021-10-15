@@ -58,9 +58,9 @@
 		<a data-scroll="" href="#about">
 		  <span>这是我</span>
 		</a>
-		<!-- <a data-scroll="" href="#work">
-		  <span>工作</span>
-		</a> -->
+		<a data-scroll="" href="#work">
+		  <span>干过啥</span>
+		</a>
 		 <!-- <a data-scroll="" href="#services">
 		  <span>服务</span>
 		</a> -->
@@ -126,20 +126,6 @@
 		<div class="row">
 		  <!--OWL CAROUSEL2-->
 		  <div class="owl-carousel2">
-			<div class="col-md-12">
-			  <div class="wrap-about">
-				<div class="w-content">
-				  <p class="head-about">
-					我的名字是郗世伟，18年入坑php，如今一直在做php开发，对前端也有一定的兴趣，自己平时也会琢磨一些前端知识，随着了解的东西越来越多，也会越来越感觉自己还有好长的路要走。既然当时是自己选择的这个行业，今后也要当做兴趣来做!
-				  </p>
-
-				  <h5 class="name">
-                    郗世伟
-				  </h5>
-				  <!-- <img alt="signature" src="{{ asset('assets/images/signature.png') }}"> -->
-				</div>
-			  </div>
-			</div>
 
 			<div class="col-md-12 col-sm-12 col-xs-12 white-col">
 			  <div class="row">
@@ -176,12 +162,147 @@
 				</div>
 			  </div>
 			</div>
+
+            <div class="col-md-12">
+			  <div class="wrap-about">
+				<div class="w-content">
+				  <p class="head-about">
+					我的名字是郗世伟，18年入坑php，如今一直在做php开发，对前端也有一定的兴趣，自己平时也会琢磨一些前端知识，随着了解的东西越来越多，也会越来越感觉自己还有好长的路要走。既然当时是自己选择的这个行业，今后也要当做兴趣来做!
+				  </p>
+
+				  <h5 class="name">
+                    郗世伟
+				  </h5>
+				  <!-- <img alt="signature" src="{{ asset('assets/images/signature.png') }}"> -->
+				</div>
+			  </div>
+			</div>
 		  </div>
 		  <!--/.OWL CAROUSEL2 END-->
 		</div>
 	  </div>
 	</section>
 	<!--/.ABOUT END-->
+
+    <!--EMPLOYEMENT-->
+	<section class="grey-bg" id="employement">
+	  <div class="container">
+		<div class="row">
+		  <div class="col-md-3">
+			<h3 class="title-small">
+			  <span>工作经验</span>
+			</h3>
+			<p class="content-detail">
+			  打工人，打工魂，打工的都是人下人。一天不打工都浑身难受
+			</p>
+		  </div>
+		  <div class="col-md-9 content-right">
+			<div class="row">
+			  <ul class="listing-item">
+				<li>
+				  <div class="col-md-6 col-sm-6">
+					<div class="wrap-card">
+					  <div class="card">
+						<h2 class="year">
+						  2021.8 - 至今
+						</h2>
+						<p class="job">
+						  后端 + uniapp前端 开发
+						</p>
+						<p class="company">
+						  Corp Project
+						</p>
+						<hr>
+						<div class="text-detail">
+						  <p>
+							Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanita per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes.
+						  </p>
+						</div>
+					  </div>
+					</div>
+				  </div>
+				</li>
+
+				<li>
+				  <div class="col-md-6 col-sm-6">
+					<div class="wrap-card">
+					  <div class="card">
+						<h2 class="year">
+						  2009 - 2010
+						</h2>
+						<p class="job">
+						  web designer
+						</p>
+						<p class="company">
+						  Google inc
+						</p>
+						<hr>
+						<div class="text-detail">
+						  <p>
+							Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanita per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes.
+						  </p>
+						</div>
+					  </div>
+					</div>
+				  </div>
+				</li>
+			  </ul>
+			  <ul class="listing-item">
+				<li>
+				  <div class="col-md-6 col-sm-6">
+					<div class="wrap-card">
+					  <div class="card">
+						<h2 class="year">
+						  2010 - 2014
+						</h2>
+						<p class="job">
+						  crative director
+						</p>
+						<p class="company">
+						  41 studio
+						</p>
+						<hr>
+						<div class="text-detail">
+						  <p>
+							Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanita per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes.
+						  </p>
+						</div>
+					  </div>
+					</div>
+				  </div>
+				</li>
+
+				<li>
+				  <div class="col-md-6 col-sm-6">
+					<div class="wrap-card">
+					  <div class="card">
+						<h2 class="year">
+						  2014 - NOW
+						</h2>
+						<p class="job">
+						  fullstack designer
+						</p>
+						<p class="company">
+						  Freelance
+						</p>
+						<hr>
+						<div class="text-detail">
+						  <p>
+							Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanita per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes.
+						  </p>
+						</div>
+					  </div>
+					</div>
+				  </div>
+				</li>
+			  </ul>
+
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</section>
+	<!--/.EMPLOYEMENT END-->
 
 	<!--SKILLS-->
 	<section class="white-bg" id="skill">

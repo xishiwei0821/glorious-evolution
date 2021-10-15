@@ -92,7 +92,7 @@
 
     //typed js
     $(".typed").typed({
-        strings: ["我的名字是郗世伟", "是一名后台开发者", "熟悉一些前端开发", "是个死宅男"],
+        strings: ["我的名字是郗世伟", "是一名后台开发者", "熟悉一些前端开发"],
         typeSpeed: 100,
         backDelay: 900,
         // loop
