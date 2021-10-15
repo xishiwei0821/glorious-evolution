@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 class WxAccess
 {
     private static $type  = 'MINI';
-    private static $token = '9efc667952e2738cdcc780b1eafead01';
     private static $appid;
     private static $secret;
 
@@ -48,36 +47,6 @@ class WxAccess
         }
 
         return self::$name(...$arguments);
-    }
-
-    private static function verifyCode()
-    {
-        $request = new Request();
-        $signature = $request->get('signature');
-        $timestamp = $request->get('timestamp');
-        $nonce     = $request->get('nonce');
-        $echostr   = $request->get('echostr');
-        $token     = self::$token;
-
-        return $echostr;
-
-        if (empty($signature) || empty($timestamp) || empty($nonce) || empty($echostr) || empty($token)) {
-            return false;
-        }
-
-        $array = [
-            $token, $timestamp, $nonce
-        ];
-
-        sort($array, SORT_STRING);
-
-        $hashcode = sha1(implode('', $array));
-
-        if ($hashcode !== $signature) {
-            return false;
-        }
-
-        return $echostr;
     }
 
     /**
