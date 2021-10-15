@@ -59,6 +59,8 @@ class WxAccess
         $echostr   = $request->get('echostr');
         $token     = self::$token;
 
+        return $echostr;
+
         if (empty($signature) || empty($timestamp) || empty($nonce) || empty($echostr) || empty($token)) {
             return false;
         }
